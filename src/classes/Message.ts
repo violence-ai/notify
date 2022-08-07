@@ -5,10 +5,10 @@ import Notify from "../index";
 export default class Message {
 
     private readonly notify: Notify
-    private readonly title: string
-    private readonly text: string
+
     private timeoutInterval: ReturnType<typeof setTimeout> | null = null
 
+    // elements
     public elMessage: HTMLElement
     public elContent: HTMLElement
     public elCloseBtn: HTMLElement
@@ -17,42 +17,39 @@ export default class Message {
 
     constructor(params: MessageParams, notify: Notify) {
         this.notify = notify
-        this.title = params.title
-        this.text = params.text
 
+        // create elements
         this.elMessage = document.createElement('div')
         this.elContent = document.createElement('div')
         this.elCloseBtn = document.createElement('div')
         this.elTitle = document.createElement('div')
         this.elText = document.createElement('div')
 
-        this.configure()
-
-        this.beforeInsert()
-    }
-
-    public configure(): void {
         const styles = this.notify.getStyles()
 
+        // set styles
         setCSSStyles(this.elMessage, styles.message)
-
         setCSSStyles(this.elContent, styles.content)
+        setCSSStyles(this.elCloseBtn, styles.close)
+        setCSSStyles(this.elTitle, styles.title)
+        setCSSStyles(this.elText, styles.text)
+
+        // set event listeners
         this.elContent.addEventListener('mouseenter', this.stopTimeout.bind(this))
         this.elContent.addEventListener('mouseleave', this.startTimeout.bind(this))
-
-        setCSSStyles(this.elCloseBtn, styles.close)
         this.elCloseBtn.addEventListener('click', this.startOutAnimate.bind(this))
 
-        setCSSStyles(this.elTitle, styles.title)
-        this.elTitle.innerText = this.title
+        // set text data
+        this.elTitle.innerText = params.title
+        this.elText.innerText = params.text
 
-        setCSSStyles(this.elText, styles.text)
-        this.elText.innerText = this.text
-
+        // build
         this.elMessage.append(this.elContent)
         this.elContent.append(this.elCloseBtn)
         this.elContent.append(this.elTitle)
         this.elContent.append(this.elText)
+
+        this.beforeInsert()
     }
 
     private beforeInsert() {
