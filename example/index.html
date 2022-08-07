@@ -62,34 +62,9 @@
 
 <script>
 
-    const { animateLikeOnIphone } = Notify.animateFunctions
-    const defaultStyles = Notify.defaultStyles
-
     // Create Instance
     const notify = new Notify({
         timeout: 2500
-    })
-
-    const notify2 = new Notify({
-        timeout: 2500,
-        animateFunction: animateLikeOnIphone,
-        styles: {
-            ...defaultStyles,
-            root: {
-                position: 'fixed',
-                top: `20px`,
-                left: '40px',
-                width: `200px`,
-            },
-            title: {
-                fontWeight: 'bold',
-                color: 'blue'
-            },
-            close: {
-                ...defaultStyles.close,
-                background: 'green'
-            }
-        },
     })
 
     // rand function
@@ -108,7 +83,6 @@
     // start demo with random message
     function go() {
         notify.push(messages[getRandomInt(messages.length)])
-        notify2.push(messages[getRandomInt(messages.length)])
     }
 
     // spam
