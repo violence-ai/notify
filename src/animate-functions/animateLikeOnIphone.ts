@@ -3,8 +3,8 @@ import {Animate} from "../types/Animate";
 export const animateLikeOnIphone: Animate = {
 
     /**
-     * До помещения элемента в DOM.
-     * Здесь нужно настроить базовые стили перед стартом анимации
+     * Before the element is placed in the DOM.
+     * Here you need to set up basic styles before starting the animation
      */
     beforeInsert(message, done) {
 
@@ -18,8 +18,8 @@ export const animateLikeOnIphone: Animate = {
     },
 
     /**
-     * После помещения элемента в DOM.
-     * Здесь нужно настроить стили для анимации появления
+     * After placing an element in the DOM.
+     * Here you need to set up styles for the appearance animation
      */
     afterInsert(message, done) {
 
@@ -38,16 +38,16 @@ export const animateLikeOnIphone: Animate = {
     },
 
     /**
-     * После того как анимация завершиться.
-     * Возможно вам потребуется применить финальный стили после окончания анимации
+     * After the animation is over.
+     * You may need to apply final styles after the animation ends
      */
     afterInAnimateEnd(message, done) {
         done()
     },
 
     /**
-     * После того как выйдет время отображения.
-     * Подготовьте базовые стили перед началом анимации исчезновения
+     * After the display time is up.
+     * Prepare the base styles before starting the fade animation
      */
     startOutAnimate(message, done) {
 
