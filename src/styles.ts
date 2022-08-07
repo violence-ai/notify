@@ -1,15 +1,4 @@
-import {CSSStyle} from "./functions/setCSSStyles";
-import {StyleClassNames} from "./types/StyleClassNames";
 import {Styles} from "./types/Styles";
-
-export const styleClassNames: StyleClassNames = {
-    root: 'notify',
-    message: 'message',
-    content: 'content',
-    title: 'title',
-    text: 'text',
-    close: 'close',
-}
 
 export const styles: Styles = {
     root: {
@@ -23,7 +12,6 @@ export const styles: Styles = {
         width: '100%',
         display: 'flex',
         alignItems: 'end',
-        height: '0px', // TODO
     },
 
     content: {

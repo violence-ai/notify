@@ -1,10 +1,8 @@
-import {styleClassNames} from "../styles";
 import {Styles} from "./Styles";
+import {Animate} from "./Animate";
 
 export type Options = {
     timeout: number
-    functionShow?: (el: HTMLElement) => Promise<void>
-    functionHide?: (el: HTMLElement) => Promise<void>
+    animateFunction?: Animate
     styles?: Styles
-    styleClassNames?: typeof styleClassNames
 }

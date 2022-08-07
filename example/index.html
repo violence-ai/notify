@@ -62,9 +62,8 @@
 
 <script>
 
-    const { inAnimate, outAnimate } = Notify.animateFunctions
+    const { animateLikeOnIphone } = Notify.animateFunctions
     const defaultStyles = Notify.defaultStyles
-    const defaultStyleClassNames = Notify.defaultStyleClassNames
 
     // Create Instance
     const notify = new Notify({
@@ -72,9 +71,8 @@
     })
 
     const notify2 = new Notify({
-        timeout: 100000,
-        functionShow: inAnimate,
-        functionHide: outAnimate,
+        timeout: 2500,
+        animateFunction: animateLikeOnIphone,
         styles: {
             ...defaultStyles,
             root: {
@@ -92,14 +90,6 @@
                 background: 'green'
             }
         },
-        styleClassNames: {
-            root: 'notify',
-            message: 'message',
-            content: 'content',
-            title: 'title',
-            text: 'text',
-            close: 'close',
-        }
     })
 
     // rand function
