@@ -1,5 +1,5 @@
 {
-    "name": "notify",
+    "name": "beauty-notify",
     "email": "anri1992@yandex.ru",
     "version": "1.0.0",
     "description": "",
@@ -19,12 +19,12 @@
         "type": "git",
         "url": "https://github.com/violence-ai/notify.git"
     },
-    "bugs" : "https://github.com/violence-ai/notify/issues",
+    "bugs": "https://github.com/violence-ai/notify/issues",
     "funding": {
-        "type" : "patreon",
-        "url" : "https://www.patreon.com/violence_ai"
+        "type": "patreon",
+        "url": "https://www.patreon.com/violence_ai"
     },
-    "keywords" : [
+    "keywords": [
         "apple",
         "notify",
         "notification"

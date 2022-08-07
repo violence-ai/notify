@@ -15,6 +15,7 @@ export const styles: Styles = {
     },
 
     content: {
+        width: '100%',
         padding: '10px',
         background: '#2a2a2a',
         color: '#fff',

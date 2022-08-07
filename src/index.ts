@@ -23,7 +23,9 @@ export default class Notify {
     private createRootElement(): HTMLElement {
         const el = document.createElement('div')
         setCSSStyles(el, this.getStyles().root)
-        document.body.prepend(el)
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.prepend(el)
+        })
         return el
     }
 
