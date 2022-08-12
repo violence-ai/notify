@@ -1,6 +1,6 @@
 import {Animate} from "../types/Animate";
 
-export const animateLikeOnIphone: Animate = {
+export const iphone: Animate = {
 
     /**
      * Before the element is placed in the DOM.

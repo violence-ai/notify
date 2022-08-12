@@ -4,7 +4,9 @@ import { Styles } from "./types/Styles";
 import { Animate } from "./types/Animate";
 export default class Notify {
     static animateFunctions: {
-        animateLikeOnIphone: Animate;
+        iphone: Animate;
+        slideRight: Animate;
+        slideAngle: Animate;
     };
     static defaultStyles: Styles;
     readonly rootElement: HTMLElement;

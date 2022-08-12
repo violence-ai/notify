@@ -4,12 +4,14 @@ import {MessageParams} from "./types/MessageParams";
 import {setCSSStyles} from "./functions/setCSSStyles";
 import {styles} from "./styles";
 import {Styles} from "./types/Styles";
-import {animateLikeOnIphone} from "./animate-functions/animateLikeOnIphone";
+import {iphone} from "./animate-functions/iphone";
 import {Animate} from "./types/Animate";
+import {slideRight} from "./animate-functions/slideRight";
+import {slideAngle} from "./animate-functions/slideAngle";
 
 export default class Notify {
 
-    static animateFunctions = { animateLikeOnIphone }
+    static animateFunctions = { iphone, slideRight, slideAngle }
     static defaultStyles = styles
 
     readonly rootElement: HTMLElement
@@ -38,6 +40,6 @@ export default class Notify {
     }
 
     public getAnimate(): Animate {
-        return this.options.animateFunction ?? animateLikeOnIphone
+        return this.options.animateFunction ?? iphone
     }
 }
