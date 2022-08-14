@@ -6,29 +6,23 @@ import {Options} from "../types/Options";
 import {setCSSStyles} from "../functions/setCSSStyles";
 import {MessageParams} from "../types/MessageParams";
 import Message from "./Message";
-import {Styles} from "../types/Styles";
-import {Animate} from "../types/Animate";
-import Dispatcher from "./Dispatcher";
 
 export default class Notify {
 
     static animateFunctions = { iphone, slideRight, slideAngle }
     static defaultStyles = styles
 
-    readonly rootElement: HTMLElement
-    readonly options: Options
-    readonly dispatcher = new Dispatcher()
+    private readonly rootElement: HTMLElement
+    private readonly options: Options | undefined
 
-    messages: Message[] = []
-
-    constructor(options: Options) {
+    constructor(options?: Options) {
         this.options = options
         this.rootElement = this.createRootElement()
     }
 
     private createRootElement(): HTMLElement {
         const el = document.createElement('div')
-        setCSSStyles(el, this.getStyles().root)
+        setCSSStyles(el, this.getOptions().styles.root)
         document.addEventListener('DOMContentLoaded', () => {
             document.body.prepend(el)
         })
@@ -36,20 +30,20 @@ export default class Notify {
     }
 
     public push(params: MessageParams): void {
-        const message = new Message(params, this)
-        this.messages.unshift(message)
-        this.dispatcher.subscribe(message)
-        this.dispatcher.fire({
-            action: "changeOrder",
-            payload: null
-        })
+        new Message(params, this)
     }
 
-    public getStyles(): Styles {
-        return this.options.styles ?? Notify.defaultStyles
+    public prependMessage(message: Message): void {
+        this.rootElement.prepend(message.elMessage)
     }
 
-    public getAnimate(): Animate {
-        return this.options.animateFunction ?? iphone
+    public getOptions() {
+        return {
+            timeout: this.options?.timeout ?? 5000,
+            animateFunction: this.options?.animateFunction ?? iphone,
+            styles: this.options?.styles ?? Notify.defaultStyles,
+            gap: this.options?.gap ?? 10,
+            elementShiftTime: this.options?.elementShiftTime ?? 500,
+        }
     }
 }

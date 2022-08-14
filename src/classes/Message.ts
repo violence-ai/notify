@@ -1,9 +1,8 @@
 import {MessageParams} from "../types/MessageParams";
 import {setCSSStyles} from "../functions/setCSSStyles";
 import Notify from "../index";
-import {Changes, Observer} from "./Dispatcher";
 
-export default class Message implements Observer {
+export default class Message {
 
     private readonly notify: Notify
 
@@ -16,15 +15,9 @@ export default class Message implements Observer {
     public elTitle: HTMLElement
     public elText: HTMLElement
 
-    private title: string
-    private text: string
-
     constructor(params: MessageParams, notify: Notify) {
 
         this.notify = notify
-
-        this.title = params.title
-        this.text = params.text
 
         // create elements
         this.elMessage = document.createElement('div')
@@ -33,7 +26,7 @@ export default class Message implements Observer {
         this.elTitle = document.createElement('div')
         this.elText = document.createElement('div')
 
-        const styles = this.notify.getStyles()
+        const styles = this.notify.getOptions().styles
 
         // set styles
         setCSSStyles(this.elMessage, styles.message)
@@ -61,29 +54,37 @@ export default class Message implements Observer {
     }
 
     private beforeInsert() {
-        this.notify.getAnimate().beforeInsert(this, () => {
+        this.elMessage.style.height = `0`
+        this.elMessage.style.transition = `${this.notify.getOptions().elementShiftTime}ms ease`
+
+        this.notify.getOptions().animateFunction.beforeInsert(this, () => {
             this.afterInsert()
         })
     }
 
     private afterInsert() {
-        this.notify.rootElement.prepend(this.elMessage)
+        this.notify.prependMessage(this)
 
-        this.notify.getAnimate().afterInsert(this, () => {
+        this.elMessage.style.height = `${this.elContent.clientHeight + this.notify.getOptions().gap}px`
+
+        this.notify.getOptions().animateFunction.afterInsert(this, () => {
             this.afterInAnimateEnd()
         })
     }
 
     private afterInAnimateEnd() {
-        this.notify.getAnimate().afterInAnimateEnd(this, () => {
+        this.notify.getOptions().animateFunction.afterInAnimateEnd(this, () => {
             this.startTimeout()
         })
     }
 
     private startOutAnimate() {
-        this.notify.getAnimate().startOutAnimate(this, () => {
-            this.elMessage.remove()
-            this.notify.dispatcher.unsubscribe(this)
+        this.notify.getOptions().animateFunction.startOutAnimate(this, () => {
+
+            this.elMessage.style.height = '0'
+            setTimeout(() => {
+                this.elMessage.remove()
+            }, this.notify.getOptions().elementShiftTime)
         })
     }
 
@@ -97,19 +98,6 @@ export default class Message implements Observer {
         this.stopTimeout()
         this.timeoutInterval = setTimeout(() => {
             this.startOutAnimate()
-        }, this.notify.options.timeout)
-    }
-
-    update(changes: Changes<null>) {
-        switch (changes.action) {
-            case "changeOrder":
-                this.changeOrder()
-                break
-        }
-    }
-
-    changeOrder() {
-        const index = this.notify.messages.findIndex(item => item === this)
-        console.log(index)
+        }, this.notify.getOptions().timeout)
     }
 }

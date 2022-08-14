@@ -3,7 +3,7 @@ import {Styles} from "./types/Styles";
 export const styles: Styles = {
     root: {
         position: 'fixed',
-        top: `20px`,
+        top: `10px`,
         right: `40px`,
         width: `300px`,
     },
@@ -11,24 +11,30 @@ export const styles: Styles = {
     message: {
         width: '100%',
         display: 'flex',
-        alignItems: 'end',
+        alignItems: 'start',
     },
 
     content: {
         width: '100%',
-        padding: '10px',
+        padding: '20px',
         background: '#2a2a2a',
         color: '#fff',
-        borderRadius: '10px',
+        borderRadius: '20px',
         position: 'relative',
     },
 
     title: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontFamily: 'sans-serif',
+        fontSize: '14px',
     },
 
     text: {
-        marginTop: '10px'
+        marginTop: '10px',
+        opacity: '.7',
+        fontFamily: 'sans-serif',
+        fontSize: '14px',
+        lineHeight: '20px'
     },
 
     close: {
@@ -37,8 +43,8 @@ export const styles: Styles = {
         background: '#ff0000',
         borderRadius: '100px',
         position: 'absolute',
-        top: '10px',
-        right: '10px',
+        top: '20px',
+        right: '20px',
         cursor: 'pointer'
     },
 }

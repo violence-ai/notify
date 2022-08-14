@@ -18,8 +18,10 @@
         background: #000;
         height: 100%;
         display: flex;
-        justify-content: center;
-        align-items: center;
+    }
+
+    .wrap {
+        padding: 20px;
     }
 
     .btn {
@@ -61,10 +63,12 @@
 </style>
 
 <script>
+    const { iphone, slideAngle, slideRight } = Notify.animateFunctions
 
     // Create Instance
     const notify = new Notify({
-        timeout: 2500
+        timeout: 2500,
+        animateFunction: iphone
     })
 
     // rand function
@@ -106,7 +110,7 @@
 
 </script>
 
-<div class="middle">
+<div class="wrap">
     <div class="spam">
         <Input value="10" id="spam-value">
         <Button class="btn green" onclick="spam(this)">Start spam</button>

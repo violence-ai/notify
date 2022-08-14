@@ -1,6 +1,6 @@
-# Notify plugin
+# Smooth Notify
 
-### Push notification like on iphone
+### Push notifications with smooth animation
 
 <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/5eeea355389655.59822ff824b72.gif">
 
@@ -16,9 +16,7 @@ import Notify from "beauty-notify"
 
 ```typescript
 // creating instance
-const notify = new Notify({
-    timeout: 2500
-})
+const notify = new Notify()
 
 // push notification
 notify.push({
@@ -32,18 +30,21 @@ notify.push({
 
 ```typescript
 // You can choose the desired animation function provided out of the box
-// You can also create your own animation (see below "Creating your own animation"
-const { animateLikeOnIphone } = Notify.animateFunctions
+// You can also create your own animation (see below "Creating your own animation")
+const { iphone, slideAngle, slideRight } = Notify.animateFunctions
 // You can get base styles for further overriding (see "Style Description" below)
 const defaultStyles = Notify.defaultStyles
 
 const options = {
-    // Time after which the fade animation will start (required)
-    timeout: 2500,
-    // Fade in/out animation (optional)
-    // Default: animateLikeOnIphone
-    animateFunction: animateLikeOnIphone,
-    // Overriding styles (optional)
+    // Time after which the fade animation will start (optional, default: 5000ms)
+    timeout: 5000,
+    // Fade in/out animation (optional, default: 'iphone')
+    animateFunction: iphone,
+    // Gap between notifications (optional, default: 20)
+    gap: 20,
+    // Time for which notifications move between each other when appearing and disappearing (optional, default: 500)
+    elementShiftTime: 500,
+    // Overriding styles (optional, default: print to console to view console.log(Notify.defaultStyles))
     styles: {
         ...defaultStyles,
         root: {
@@ -71,7 +72,7 @@ const notify = new Notify(options)
 ```typescript
 /**
  * You can see an example of the finished animation code in the current repository at:
- * /src/animate-functions/animateLikeOnIphone.t
+ * /src/animate-functions/iphone.ts
  */
 
 const yourAnimateName = {

@@ -3,18 +3,14 @@ import {Animate} from "../types/Animate";
 export const slideAngle: Animate = {
 
     beforeInsert(message, done) {
-
-        message.elMessage.style.height = '0'
-        message.elMessage.style.transition = `500ms ease`
-        message.elMessage.style.transform = 'translate(600px, -300px)'
+        message.elContent.style.transition = '.5s ease'
+        message.elContent.style.transform = 'translate(600px, -300px)'
 
         done()
     },
 
     afterInsert(message, done) {
-
-        message.elMessage.style.height = `${message.elContent.clientHeight + 20}px`
-        message.elMessage.style.transform = 'translate(0, 0)'
+        message.elContent.style.transform = 'translate(0, 0)'
 
         setTimeout(() => {
             done()
@@ -27,15 +23,10 @@ export const slideAngle: Animate = {
 
     startOutAnimate(message, done) {
 
-        message.elMessage.style.transform = 'translate(600px, 300px)'
+        message.elContent.style.transform = 'translate(600px, 300px)'
 
         setTimeout(() => {
-            message.elMessage.style.height = "0px"
-
-            setTimeout(() => {
-                done()
-            }, 500)
-
+            done()
         }, 500)
     }
 }
