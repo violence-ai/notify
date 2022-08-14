@@ -1,7 +1,9 @@
 import { Options } from "../types/Options";
 import { MessageParams } from "../types/MessageParams";
+import Message from "./Message";
 import { Styles } from "../types/Styles";
 import { Animate } from "../types/Animate";
+import Dispatcher from "./Dispatcher";
 export default class Notify {
     static animateFunctions: {
         iphone: Animate;
@@ -11,6 +13,8 @@ export default class Notify {
     static defaultStyles: Styles;
     readonly rootElement: HTMLElement;
     readonly options: Options;
+    readonly dispatcher: Dispatcher;
+    messages: Message[];
     constructor(options: Options);
     private createRootElement;
     push(params: MessageParams): void;

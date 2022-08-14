@@ -8,6 +8,7 @@ import {MessageParams} from "../types/MessageParams";
 import Message from "./Message";
 import {Styles} from "../types/Styles";
 import {Animate} from "../types/Animate";
+import Dispatcher from "./Dispatcher";
 
 export default class Notify {
 
@@ -16,6 +17,9 @@ export default class Notify {
 
     readonly rootElement: HTMLElement
     readonly options: Options
+    readonly dispatcher = new Dispatcher()
+
+    messages: Message[] = []
 
     constructor(options: Options) {
         this.options = options
@@ -32,7 +36,13 @@ export default class Notify {
     }
 
     public push(params: MessageParams): void {
-        new Message(params, this)
+        const message = new Message(params, this)
+        this.messages.unshift(message)
+        this.dispatcher.subscribe(message)
+        this.dispatcher.fire({
+            action: "changeOrder",
+            payload: null
+        })
     }
 
     public getStyles(): Styles {

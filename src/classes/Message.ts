@@ -1,8 +1,9 @@
 import {MessageParams} from "../types/MessageParams";
 import {setCSSStyles} from "../functions/setCSSStyles";
 import Notify from "../index";
+import {Changes, Observer} from "./Dispatcher";
 
-export default class Message {
+export default class Message implements Observer {
 
     private readonly notify: Notify
 
@@ -15,8 +16,15 @@ export default class Message {
     public elTitle: HTMLElement
     public elText: HTMLElement
 
+    private title: string
+    private text: string
+
     constructor(params: MessageParams, notify: Notify) {
+
         this.notify = notify
+
+        this.title = params.title
+        this.text = params.text
 
         // create elements
         this.elMessage = document.createElement('div')
@@ -75,6 +83,7 @@ export default class Message {
     private startOutAnimate() {
         this.notify.getAnimate().startOutAnimate(this, () => {
             this.elMessage.remove()
+            this.notify.dispatcher.unsubscribe(this)
         })
     }
 
@@ -89,5 +98,18 @@ export default class Message {
         this.timeoutInterval = setTimeout(() => {
             this.startOutAnimate()
         }, this.notify.options.timeout)
+    }
+
+    update(changes: Changes<null>) {
+        switch (changes.action) {
+            case "changeOrder":
+                this.changeOrder()
+                break
+        }
+    }
+
+    changeOrder() {
+        const index = this.notify.messages.findIndex(item => item === this)
+        console.log(index)
     }
 }

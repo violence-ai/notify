@@ -1,6 +1,7 @@
 import { MessageParams } from "../types/MessageParams";
 import Notify from "../index";
-export default class Message {
+import { Changes, Observer } from "./Dispatcher";
+export default class Message implements Observer {
     private readonly notify;
     private timeoutInterval;
     elMessage: HTMLElement;
@@ -15,4 +16,5 @@ export default class Message {
     private startOutAnimate;
     private stopTimeout;
     private startTimeout;
+    update(changes: Changes<any>): void;
 }
