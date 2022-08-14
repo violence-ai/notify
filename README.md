@@ -2,7 +2,7 @@
 
 ### Push notifications with smooth animation
 
-<img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/5eeea355389655.59822ff824b72.gif">
+https://user-images.githubusercontent.com/51386157/184543160-135b64b7-846d-42ab-86c8-042c574f300f.mp4
 
 <hr>
 
