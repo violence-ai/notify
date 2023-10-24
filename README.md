@@ -24,6 +24,8 @@ notify.push({
     text: 'An example of a long notice for your site'
 })
 
+// Destroy (be sure to use it when unmounting in React components and the like)
+notify.destroy()
 ```
 
 # Options

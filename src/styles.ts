@@ -6,6 +6,7 @@ export const styles: Styles = {
         top: `10px`,
         right: `40px`,
         width: `300px`,
+        zIndex: '9999999',
     },
 
     message: {
