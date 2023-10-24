@@ -1,3 +1,3 @@
-import Notify from "./classes/Notify"
+import SmoothNotify from "./classes/SmoothNotify"
 
-export default Notify
+export default SmoothNotify

@@ -7,7 +7,7 @@ import {setCSSStyles} from "../functions/setCSSStyles";
 import {MessageParams} from "../types/MessageParams";
 import Message from "./Message";
 
-export default class Notify {
+export default class SmoothNotify {
 
     static animateFunctions = { iphone, slideRight, slideAngle }
     static defaultStyles = styles
@@ -23,10 +23,12 @@ export default class Notify {
     private createRootElement(): HTMLElement {
         const el = document.createElement('div')
         setCSSStyles(el, this.getOptions().styles.root)
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.prepend(el)
-        })
+        document.body.prepend(el)
         return el
+    }
+
+    public destroy() {
+        this.rootElement.remove()
     }
 
     public push(params: MessageParams): void {
@@ -41,7 +43,7 @@ export default class Notify {
         return {
             timeout: this.options?.timeout ?? 5000,
             animateFunction: this.options?.animateFunction ?? iphone,
-            styles: this.options?.styles ?? Notify.defaultStyles,
+            styles: this.options?.styles ?? SmoothNotify.defaultStyles,
             gap: this.options?.gap ?? 10,
             elementShiftTime: this.options?.elementShiftTime ?? 500,
         }

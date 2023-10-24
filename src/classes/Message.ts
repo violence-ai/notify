@@ -1,10 +1,10 @@
 import {MessageParams} from "../types/MessageParams";
 import {setCSSStyles} from "../functions/setCSSStyles";
-import Notify from "../index";
+import SmoothNotify from "../index";
 
 export default class Message {
 
-    private readonly notify: Notify
+    private readonly notify: SmoothNotify
 
     private timeoutInterval: ReturnType<typeof setTimeout> | null = null
 
@@ -15,7 +15,7 @@ export default class Message {
     public elTitle: HTMLElement
     public elText: HTMLElement
 
-    constructor(params: MessageParams, notify: Notify) {
+    constructor(params: MessageParams, notify: SmoothNotify) {
 
         this.notify = notify
 

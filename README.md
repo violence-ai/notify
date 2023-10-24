@@ -9,14 +9,14 @@ https://user-images.githubusercontent.com/51386157/184543160-135b64b7-846d-42ab-
 # Import to your project
 
 ```typescript
-import Notify from "beauty-notify"
+import SmoothNotify from "smooth-notify"
 ```
 
 # Usage
 
 ```typescript
 // creating instance
-const notify = new Notify()
+const notify = new SmoothNotify()
 
 // push notification
 notify.push({
@@ -31,9 +31,9 @@ notify.push({
 ```typescript
 // You can choose the desired animation function provided out of the box
 // You can also create your own animation (see below "Creating your own animation")
-const { iphone, slideAngle, slideRight } = Notify.animateFunctions
+const { iphone, slideAngle, slideRight } = SmoothNotify.animateFunctions
 // You can get base styles for further overriding (see "Style Description" below)
-const defaultStyles = Notify.defaultStyles
+const defaultStyles = SmoothNotify.defaultStyles
 
 const options = {
     // Time after which the fade animation will start (optional, default: 5000ms)
@@ -64,7 +64,7 @@ const options = {
     },
 }
 
-const notify = new Notify(options)
+const notify = new SmoothNotify(options)
 ```
 
 # Create your own animation
